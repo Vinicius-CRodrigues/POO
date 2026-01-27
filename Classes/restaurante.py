@@ -37,8 +37,10 @@ class Restaurante:
     def alternar_status_por_hora(self):
         agora = datetime.now(zoneInfo('America/Sao_Paulo'))
 
-        if 11 <= agora.hour <= 18:
+        if 11 < agora.hour < 18:
             self._ativo = False
+        else:
+            self._ativo = True
         
         # Dentro de um método, eu estou recebendo uma classe que foi importada.
     def receber_avaliacao(self, cliente, nota):
