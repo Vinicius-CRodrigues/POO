@@ -44,7 +44,7 @@ class Restaurante:
         
         # Dentro de um método, eu estou recebendo uma classe que foi importada.
     def receber_avaliacao(self, cliente, nota):
-        if nota < 0 or nota <= 5:
+        if nota >= 0 or nota <= 5:
             avaliacao = Avaliacoes(cliente, nota)
             self._avaliacoes.append(avaliacao)
     
