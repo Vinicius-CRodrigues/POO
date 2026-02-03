@@ -1,6 +1,6 @@
 from datetime import datetime
-from zoneinfo import ZoneInfo as zoneInfo
-from Classes.avaliacoes import Avaliacoes
+from Modelos.avaliacoes import Avaliacoes
+
 
 '''
 Programação Orientada a Objetos (POO) é um paradigma que organiza o código em torno de objetos, que agrupam dados (atributos) e comportamentos (métodos) para modelar entidades do mundo real, facilitando o desenvolvimento de sistemas complexos, modulares e fáceis de manter, usando princípios como Encapsulamento, Herança, Polimorfismo e Abstração.
@@ -35,14 +35,14 @@ class Restaurante:
             print(f'{restaurante._nome:<20} | {restaurante.media_avaliacao:<21} | {restaurante._categoria:<21} | {restaurante.status_restaurante}')
     
     def alternar_status_por_hora(self):
-        agora = datetime.now(zoneInfo('America/Sao_Paulo'))
+        agora = datetime.now()
 
-        if 11 < agora.hour < 18:
+        if 11 < agora.hour <= 18:
             self._ativo = False
         else:
             self._ativo = True
         
-        # Dentro de um método, eu estou recebendo uma classe que foi importada.
+    # Dentro de um método, eu estou recebendo uma classe que foi importada.
     def receber_avaliacao(self, cliente, nota):
         if nota >= 0 or nota <= 5:
             avaliacao = Avaliacoes(cliente, nota)
