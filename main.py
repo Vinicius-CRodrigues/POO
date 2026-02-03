@@ -10,8 +10,8 @@ if __name__ == '__main__':
 
     # Consigo mudar o nome somento com o _, pois nome está como protegido.
     hut._nome = 'Pizza Hut'
-    hut.receber_avaliacao('Vinicius', 7)
-    hut.receber_avaliacao('João', 27)
+    hut.receber_avaliacao('Vinicius', 5)
+    hut.receber_avaliacao('João', 5)
 
     # Quando uso a palavra vars, ela cria um dicionário e me demonstra as informações de cada atributo daquele objeto
     print(vars(hut))
