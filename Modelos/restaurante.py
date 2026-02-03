@@ -1,7 +1,6 @@
 from datetime import datetime
 from Modelos.avaliacoes import Avaliacoes
-
-
+from Modelos.Cardapio.item_cardapio import ItemCardapio
 '''
 Programação Orientada a Objetos (POO) é um paradigma que organiza o código em torno de objetos, que agrupam dados (atributos) e comportamentos (métodos) para modelar entidades do mundo real, facilitando o desenvolvimento de sistemas complexos, modulares e fáceis de manter, usando princípios como Encapsulamento, Herança, Polimorfismo e Abstração.
 
@@ -16,6 +15,7 @@ class Restaurante:
         self._ativo = False
         # Criando um conjunto de avaliações com a lista.
         self._avaliacoes = []
+        self._cardapio = []
         Restaurante.restaurantes_cadastrados.append(self)
 
     # Destacando as informações do objeto, onde está alicado na memória, em formato de texto com esse método especial.
@@ -36,8 +36,8 @@ class Restaurante:
     
     def alternar_status_por_hora(self):
         agora = datetime.now()
-
-        if 11 < agora.hour <= 18:
+        
+        if 11 <= agora.hour < 18:
             self._ativo = False
         else:
             self._ativo = True
@@ -58,3 +58,22 @@ class Restaurante:
             qde_notas = len(self._avaliacoes)
             media = soma_notas / qde_notas
             return f'{media:.1f}'
+
+    def adicionar_no_cardapio(self, item):
+        # Vejo se o item adicionado é uma instancia da classe ItemCardapio ou derivada dela.
+        if isinstance(item, ItemCardapio):
+            self._cardapio.append(item)
+
+    @property
+    def exibir_cardapio(self):
+        print(f'\nCardapio do restaurante {self._nome}')
+        for i, item in enumerate(self._cardapio, start= 1):
+            if hasattr(item, '_descricao'):
+                print(f'{i}. Nome: {item._nome} | R${item._preco:.2f} | {item._descricao}')
+            elif hasattr(item, '_medida'):
+                print(f'{i}. Nome: {item._nome} | R${item._preco:.2f} | {item._medida}')
+            else:
+                print(f'{i}. Nome: {item._nome} | R${item._preco:.2f}')
+
+
+            
